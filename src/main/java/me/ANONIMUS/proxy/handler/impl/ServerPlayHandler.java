@@ -2,6 +2,7 @@ package me.ANONIMUS.proxy.handler.impl;
 
 import me.ANONIMUS.proxy.BetterProxy;
 import me.ANONIMUS.proxy.handler.ServerHandler;
+import me.ANONIMUS.proxy.objects.Macro;
 import me.ANONIMUS.proxy.protocol.data.ItemStack;
 import me.ANONIMUS.proxy.protocol.data.WindowAction;
 import me.ANONIMUS.proxy.protocol.data.WindowType;
@@ -24,8 +25,14 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class ServerPlayHandler extends ServerHandler {
+    private static int packetint;
+
     public ServerPlayHandler(Player player) {
         super(player);
+    }
+
+    public static void resetpacketint(){
+        packetint = 0;
     }
 
     @Override
@@ -87,7 +94,12 @@ public class ServerPlayHandler extends ServerHandler {
     }
 
     private void forwardPacket(final Packet packet) {
-                if (player.isConnected()) {
+        if(player.isConnected() && player.getMacroregister()){
+            packetint++;
+            ChatUtil.sendTitle(player, "&7(&cMACRO&7)", "&7Recorded &c" + packetint + " &7packets");
+            Macro.addPacket(packet);
+        }
+            if (player.isConnected()) {
             if (player.isMother()) {
                 if(player.getMotherdelay() == 0){
                     player.getBots().forEach(bot ->
