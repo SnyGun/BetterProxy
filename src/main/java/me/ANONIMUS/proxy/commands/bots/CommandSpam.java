@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class CommandSpam extends Command {
     public CommandSpam() {
-        super("spam", "spambypass", "spam message or command with bots", "[repeat] [delay] [message]", CommandType.BOTS, ConnectedType.NONE);
+        super("spam", "spambypass", "spam message or command with bots", "[message]", CommandType.BOTS, ConnectedType.NONE);
     }
 
     protected String getRandomString(int lenght) {
