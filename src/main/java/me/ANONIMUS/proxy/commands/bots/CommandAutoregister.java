@@ -13,7 +13,7 @@ package me.ANONIMUS.proxy.command.impl.bots;
 
 public class CommandAutoregister extends Command {
     public CommandAutoregister() {
-        super("autoregister", null, "autoregister bot", "[repeat]", CommandType.BOTS, ConnectedType.CONNECTED);
+        super("bregister", null, "register bot", "[repeat]", CommandType.BOTS, ConnectedType.CONNECTED);
     }
 
     protected String getRandomString(int lenght) {
